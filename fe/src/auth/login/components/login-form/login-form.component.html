@@ -1,0 +1,44 @@
+<form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm">
+  <h1>Login</h1>
+  <div class="form-row form-row-field">
+    <label for="username">
+      Account naam*:
+    </label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      #username="ngModel"
+      minlength="4"
+      required
+      ngModel
+    />
+    <div *ngIf="username.errors?.required && username.dirty" class="error">
+      Naam is verplicht
+    </div>
+  </div>
+  <div class="form-row form-row-field">
+     <label for="password">
+      Wachtwoord*:
+    </label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      autocomplete="password"
+      #password="ngModel"
+      minlength="8"
+      required
+      ngModel
+    />
+    <div *ngIf="password.errors?.required && password.dirty" class="error">
+      Wachtwoord is verplicht
+    </div>
+  </div>
+  <div class="form-row-action">
+    <button type="submit" [disabled]="form.invalid">Login</button>
+  </div>
+  <div *ngIf="signInFailedReason" class="error">
+    <p>Inloggen mislukt. Reden: "{{ signInFailedReason }}"</p>
+  </div>
+</form>

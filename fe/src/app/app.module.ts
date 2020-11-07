@@ -1,6 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+import {AuthModule} from '../auth/auth.module';
+
 import {AppRoutingModule} from './app-routing.module';
 import {UserDashboardModule} from './user-dashboard/user-dashboard.module';
 
@@ -16,6 +18,7 @@ import {WildcardRoutingModule} from './wildcard-routing.module';
   imports: [
     BrowserModule,
     UserDashboardModule,
+    AuthModule,
     AppRoutingModule,
     WildcardRoutingModule,
   ],
