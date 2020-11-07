@@ -4,9 +4,9 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {UserDashboardModule} from './user-dashboard/user-dashboard.module';
 
-import { AppComponent } from './app.component';
 import {AppComponent} from './app.component';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {WildcardRoutingModule} from './wildcard-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,11 +14,10 @@ import {NotFoundComponent} from './not-found/not-found.component';
     NotFoundComponent,
   ],
   imports: [
-    // angular modules
     BrowserModule,
-    AppRoutingModule,
-    // custom modules
     UserDashboardModule,
+    AppRoutingModule,
+    WildcardRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
