@@ -1,35 +1,51 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginService} from '../../login.service';
-import LoginValues from '../../models/LoginValues.interface';
+import {User} from '../../../models/User.interface';
+import {FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-login',
   template: `
-    <app-login-form
-      (update)="handleLogin($event)"
-      [signInFailedReason]="signInFailedReason"
-    ></app-login-form>
+    <app-auth-form
+      (submitted)="loginUser($event)"
+      (isValidForm)="checkFormValidity($event)"
+    >
+      <h1>Login</h1>
+      <ng-container error>{{ signInFailedReason }}</ng-container>
+      <ng-container action>
+        <button type="submit" [disabled]="!buttonEnabled">Login</button>
+      </ng-container>
+      <ng-container fallback>
+        <a routerLink="/auth/register">Nog niet geregisteerd?</a>
+      </ng-container>
+    </app-auth-form>
   `,
 })
 export class LoginComponent implements OnInit {
-  registerSuccessful: boolean;
+  buttonEnabled = false;
   signInFailedReason: string;
 
   @Output()
-  update: EventEmitter<LoginValues> = new EventEmitter<LoginValues>();
+  update: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(
     private loginService: LoginService,
-    // private router: Router
   ) { }
 
   ngOnInit(): void {}
 
-  handleLogin(event: LoginValues) {
-    this.loginService.login(event)
+  checkFormValidity(isValid: boolean) {
+    this.buttonEnabled = isValid;
+  }
+
+  loginUser(event: FormGroup) {
+    const { value }: { value: User } = event;
+
+    console.log(value);
+
+    this.loginService.login(value)
       .subscribe({
         next: ({ accessToken }) => {
-
           console.log(accessToken);
 
           // add token to localstorage

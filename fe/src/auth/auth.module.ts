@@ -1,8 +1,7 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './login/containers/login-view/login-view.component';
-import {RegisterComponent} from './register/containers/register-view/register-view.component';
+import {ReactiveFormsModule} from '@angular/forms';
 import {LoginModule} from './login/login.module';
 import {RegisterModule} from './register/register.module';
 
@@ -11,8 +10,8 @@ export const ROUTES: Routes = [
     path: 'auth',
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'login' },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
+      { path: 'login', loadChildren: './login/login.module#LoginModule' },
+      { path: 'register', loadChildren: './register/register.module#RegisterModule' },
     ],
   },
 ];
@@ -20,8 +19,10 @@ export const ROUTES: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(ROUTES)
   ],
   exports: [LoginModule, RegisterModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AuthModule {}
