@@ -9,3 +9,4 @@ Notes:
 - Translation (i18n)
 -- Add translation mechanism
 -- The BE returns messages in english. Refactor so it returns i18n keys instead.
+- At the moment the unit tests are testing mainly implementation details. This is to understand the system better. At a later stage replace this with TDD/BDD practices.

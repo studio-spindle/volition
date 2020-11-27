@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {NgxsModule} from '@ngxs/store';
-import {AuthState} from './state/Auth.state';
+import {AuthState} from './store/Auth.state';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 
 import {AppComponent} from './app.component';

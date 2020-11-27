@@ -6,7 +6,6 @@ import {Register, Login, Logout} from 'actions';
 import {tap} from 'rxjs/operators';
 import * as dayjs from 'dayjs';
 import jwt_decode from 'jwt-decode';
-import {Dayjs} from 'dayjs';
 
 @State<AuthStateModel>({
   name: 'auth',
@@ -29,14 +28,25 @@ export class AuthState {
   }
 
   @Selector()
-  static getExpiration(state: AuthStateModel): Dayjs | null {
-    return dayjs(state.expiresAt);
+  static getExpiration(state: AuthStateModel): string | null {
+    return state.expiresAt;
+  }
+
+  @Selector()
+  static isLoggedIn(state: AuthStateModel) {
+    const expiration = this.getExpiration(state);
+    return dayjs().isBefore(expiration);
+  }
+
+  @Selector()
+  static isLoggedOut(state: AuthStateModel) {
+    return !this.isLoggedIn(state);
   }
 
   constructor(private authService: AuthService) {}
 
   @Action(Register)
-  register(ctx: StateContext<AuthStateModel>, action: Login) {
+  register(ctx: StateContext<AuthStateModel>, action: Register) {
     return this.authService.register(action.payload);
   }
 
@@ -45,7 +55,8 @@ export class AuthState {
     return this.authService.login(action.payload).pipe(
       tap(({ accessToken }: { accessToken: string }) => {
         const {exp} = jwt_decode(accessToken);
-        const expiresAt = dayjs().add(exp, 'second');
+        const expiresAt = dayjs.unix(exp).format();
+
         ctx.patchState({
           token: accessToken,
           username: action.payload.username,
