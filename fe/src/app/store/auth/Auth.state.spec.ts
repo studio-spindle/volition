@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 import {NgxsModule, Store} from '@ngxs/store';
 import {AuthState} from './Auth.state';
-import {AuthService} from '../auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import {Login, Logout, Register} from 'actions';
 import {HttpClientTestingModule} from '@angular/common/http/testing';

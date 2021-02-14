@@ -1,6 +1,7 @@
 # Fe
 
 TODO:
+- Add token expiration to Auth
 - Add automated refresh token flow
 
 Notes:

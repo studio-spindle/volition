@@ -17,14 +17,12 @@ describe('AuthFormComponent', () => {
       imports: [ ReactiveFormsModule ],
     })
     .compileComponents();
-  }));
 
-  beforeEach(async () => {
     fixture = TestBed.createComponent(AuthFormComponent);
     component = fixture.componentInstance;
     el = fixture.debugElement;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

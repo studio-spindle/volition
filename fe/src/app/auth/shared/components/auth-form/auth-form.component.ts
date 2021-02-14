@@ -26,7 +26,7 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
           Wachtwoord*:
         </label>
         <input
-          type="text"
+          type="password"
           id="password"
           formControlName="password"
         />

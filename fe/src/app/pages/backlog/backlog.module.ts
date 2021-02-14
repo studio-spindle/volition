@@ -3,14 +3,14 @@ import {CommonModule} from '@angular/common';
 import {BacklogComponent} from './containers/backlog/backlog.component';
 
 import {TaskModule} from '../../shared/task/task.module';
-import {BacklogService} from './backlog.service';
+import {TasksService} from '../../shared/task/task.service';
 import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [BacklogComponent],
   imports: [CommonModule, TaskModule, ReactiveFormsModule],
   exports: [BacklogComponent],
-  providers: [BacklogService],
+  providers: [TasksService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class BacklogModule {}

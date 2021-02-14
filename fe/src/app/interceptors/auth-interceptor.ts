@@ -1,7 +1,7 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AuthState} from '../store/Auth.state';
+import {AuthState} from '../store/auth/Auth.state';
 import {Store} from '@ngxs/store';
 
 @Injectable()

@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BacklogComponent} from './backlog.component';
-import {BacklogService} from '../../backlog.service';
+import {TasksService} from '../../../../shared/task/task.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {FormBuilder} from '@angular/forms';
 
@@ -12,7 +12,7 @@ describe('BacklogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BacklogComponent],
-      providers: [BacklogService, HttpClient, HttpHandler, FormBuilder],
+      providers: [TasksService, HttpClient, HttpHandler, FormBuilder],
     })
     .compileComponents();
   }));

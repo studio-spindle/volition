@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Task } from 'src/app/pages/backlog/models/task.interface';
+import { Task } from 'src/app/shared/task/task.interface';
 
 @Component({
   selector: 'app-task',

@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {NgxsModule} from '@ngxs/store';
-import {AuthState} from './store/Auth.state';
+import {AuthState} from './store/auth/Auth.state';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 
 import {AppComponent} from './app.component';
@@ -10,6 +10,7 @@ import {AuthModule} from './auth/auth.module';
 import {WildcardRoutingModule} from './wildcard-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './interceptors/auth-interceptor';
+import {TasksState} from './store/tasks/Tasks.state';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {AuthInterceptor} from './interceptors/auth-interceptor';
     AuthModule,
     WildcardRoutingModule,
     HttpClientModule,
-    NgxsModule.forRoot([AuthState]),
+    NgxsModule.forRoot([AuthState, TasksState]),
     NgxsStoragePluginModule.forRoot({
       key: 'auth',
     })

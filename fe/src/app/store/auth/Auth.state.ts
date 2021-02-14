@@ -1,7 +1,7 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable} from '@angular/core';
 import {AuthStateModel} from './AuthState.interface';
-import {AuthService} from '../auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 import {Register, Login, Logout} from 'actions';
 import {tap} from 'rxjs/operators';
 import * as dayjs from 'dayjs';

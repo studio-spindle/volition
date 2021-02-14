@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {BacklogService} from '../../backlog.service';
-import {Task} from '../../models/task.interface';
+import {Select, Store} from '@ngxs/store';
+import {Task} from '../../../../shared/task/task.interface';
 import {FormBuilder, Validators} from '@angular/forms';
+import {TasksState} from '../../../../store/tasks/Tasks.state';
+import {Observable} from 'rxjs';
+import {AddTask, GetTasks} from '../../../../actions/tasks.actions';
 
 @Component({
   selector: 'app-backlog',
@@ -9,6 +12,8 @@ import {FormBuilder, Validators} from '@angular/forms';
   styleUrls: ['./backlog.component.sass']
 })
 export class BacklogComponent implements OnInit {
+  @Select(TasksState) tasks$: Observable<{ tasks: Task[] }>;
+
   tasks: Task[];
 
   taskForm = this.formBuilder.group({
@@ -23,24 +28,22 @@ export class BacklogComponent implements OnInit {
   });
 
   constructor(
-    private tasksService: BacklogService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
-    this.tasks = this.tasksService.getTasks();
+    this.store.dispatch(new GetTasks());
+
+    this.tasks$.subscribe((tasks) => {
+      this.tasks = tasks.tasks;
+    });
   }
 
   onSubmit() {
-    console.log('form is submitted...');
     const { value }: { value: Task } = this.taskForm;
     if (this.taskForm.valid) {
-      console.log('this form is valid');
-      this.tasksService.addTask(value).subscribe((res) => {
-        console.log('res...? ', res);
-      }, (error) => {
-        console.log('Error', error);
-      });
+      this.store.dispatch(new AddTask(value));
     }
   }
 }
