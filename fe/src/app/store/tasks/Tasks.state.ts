@@ -26,7 +26,6 @@ export class TasksState {
   getTasks(ctx: StateContext<TasksStateModel>) {
     return this.tasksService.getTasks().pipe(
       tap((tasks: Task[]) => {
-        console.log('this should be only tasks: ', tasks);
         ctx.patchState({ tasks });
       })
     );
