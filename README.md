@@ -11,7 +11,18 @@ npm install -g yarn
 npm install -g @angular/cli
 ```
 
-### Database
+### Option 1: Intellij
+
+Simply use the pre-defined configurations as defined in `./run`.
+
+Run in sequence:
+- Docker: volition_db_1
+- BE
+- FE
+
+### Option 2: Manual Start
+
+#### 2.1 Database
 
 Run:
 
@@ -23,7 +34,7 @@ This will start a database server on port 5432.
 
 Also, an initial database script (`./dev-initdb.sql`) is run creates the "taskmanagement" table.
 
-### Back End
+#### 2.2 Back End
 
 ```shell
 $ cd be
@@ -31,7 +42,7 @@ $ yarn install # only use this initially
 $ yarn start:dev
 ```
 
-### Front end
+#### 2.3 Front end
 
 ```shell
 $ cd fe
