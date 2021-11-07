@@ -2,33 +2,48 @@
 
 ## Development
 
+This project depends on Yarn and Angular CLI to be installed globally.
+
+If you haven't installed it globally use:
+
+```shell
+npm install -g yarn
+npm install -g @angular/cli
+```
+
 ### Database
 
-First run postgres on your local machine. 
+Run:
 
-Pull the image from [Docker Hub](https://hub.docker.com/_/postgres) and run:
-
-```
-$ docker run -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres
+```shell
+$ docker-compose up
 ```
 
-This will start a database server on port 5432. Install [pgAdmin](https://www.pgadmin.org/), connect to the running server and manually create a database named 'taskmanagement'.
+This will start a database server on port 5432. 
+
+Also, an initial database script (`./dev-initdb.sql`) is run creates the "taskmanagement" table.
 
 ### Back End
 
-```
+```shell
 $ cd be
+$ yarn install # only use this initially
 $ yarn start:dev
 ```
 
 ### Front end
 
-```
+```shell
 $ cd fe
+$ yarn install # only use this initially
 $ ng serve
 ```
 
 Open: `http://localhost:4200/`.
+
+This will open the initial page of the web application. 
+
+## Additional information
 
 For additional information on specific topics, view the documentation:
 

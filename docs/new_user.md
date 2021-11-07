@@ -1,8 +1,12 @@
 # Creating a new user
 
+> Note: Make sure to first run the docker-compose and the BE so that the correct tables are created.
+
 Install [Postman](https://www.postman.com/) and import the [postman collection](./postman/Volition.postman_collection.json) for this project.
 
 Then in postman run the 'signup' request with the following body (x-www-form-urlencoded):
+
+By default the following body is sent:
 
 ```
 username: Myname
@@ -23,5 +27,3 @@ Then send the body as you like (x-www-form-urlencoded):
 title: Some kind of title
 description: My description of the task
 ```
-
-That's it. In the postgress admin under Server > local > Databases > taskmanagement > schemas > public > Tables (2) you will see two tables, one for the **task** and one for the **user**.
