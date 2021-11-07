@@ -5,7 +5,7 @@ import {AuthService} from '../../auth/auth.service';
 import {Register, Login, Logout} from 'actions';
 import {tap} from 'rxjs/operators';
 import * as dayjs from 'dayjs';
-import jwt_decode from 'jwt-decode';
+import jwt_decode, {JwtPayload} from 'jwt-decode';
 
 @State<AuthStateModel>({
   name: 'auth',
@@ -54,7 +54,7 @@ export class AuthState {
   login(ctx: StateContext<AuthStateModel>, action: Login) {
     return this.authService.login(action.payload).pipe(
       tap(({ accessToken }: { accessToken: string }) => {
-        const {exp} = jwt_decode(accessToken);
+        const {exp} = jwt_decode<JwtPayload>(accessToken);
         const expiresAt = dayjs.unix(exp).format();
 
         ctx.patchState({
