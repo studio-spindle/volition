@@ -4,8 +4,9 @@
     "baseUrl": "./",
     "paths": {
       "actions": [
-        "src/app/actions"
-      ]
+        "src/app/actions",
+      ],
+      "@shared": ["shared"],
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

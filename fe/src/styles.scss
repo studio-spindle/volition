@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use './design-tokens';
+
+// simple reset
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+  height: auto;
+  overflow: auto;
+}
+
+body {
+   background-color: map.get(design-tokens.$theme, color, support, grey-light)
+}

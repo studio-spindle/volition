@@ -1,14 +1,12 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
 import {BacklogComponent} from './containers/backlog/backlog.component';
 
-import {TaskModule} from '../../shared/task/task.module';
-import {TasksService} from '../../shared/task/task.service';
-import {ReactiveFormsModule} from '@angular/forms';
+import {TaskModule, TasksService, InputComponent} from '@shared';
 
 @NgModule({
-  declarations: [BacklogComponent],
-  imports: [CommonModule, TaskModule, ReactiveFormsModule],
+  declarations: [BacklogComponent, InputComponent],
+  imports: [TaskModule, ReactiveFormsModule],
   exports: [BacklogComponent],
   providers: [TasksService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

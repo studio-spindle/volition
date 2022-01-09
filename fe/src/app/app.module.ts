@@ -11,6 +11,7 @@ import {WildcardRoutingModule} from './wildcard-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './interceptors/auth-interceptor';
 import {TasksState} from './store/tasks/Tasks.state';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {TasksState} from './store/tasks/Tasks.state';
     NgxsModule.forRoot([AuthState, TasksState]),
     NgxsStoragePluginModule.forRoot({
       key: 'auth',
-    })
+    }),
+    CommonModule
   ],
   providers: [
     {

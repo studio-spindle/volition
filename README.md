@@ -34,7 +34,7 @@ This will start a database server on port 5432.
 
 Also, an initial database script (`./dev-initdb.sql`) is run creates the "taskmanagement" table.
 
-#### 2.2 Back End
+#### 2.2 Back end
 
 ```shell
 $ cd be

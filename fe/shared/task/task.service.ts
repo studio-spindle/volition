@@ -1,6 +1,6 @@
 import { Task } from './task.interface';
 import {Observable} from 'rxjs';
-import api from '../../../api';
+import api from '../../src/api';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 

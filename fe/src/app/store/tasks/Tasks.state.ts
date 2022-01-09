@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {TasksStateModel} from './TasksState.interface';
-import {Task} from '../../shared/task/task.interface';
 import {AddTask, GetTasks} from '../../actions/tasks.actions';
-import {TasksService} from '../../shared/task/task.service';
+import {Task, TasksService} from '@shared';
 import {tap} from 'rxjs/operators';
 
 @State<TasksStateModel>({

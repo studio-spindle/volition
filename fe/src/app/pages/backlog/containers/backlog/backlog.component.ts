@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Select, Store} from '@ngxs/store';
-import {Task} from '../../../../shared/task/task.interface';
+import {Task} from '@shared';
 import {FormBuilder, Validators} from '@angular/forms';
 import {TasksState} from '../../../../store/tasks/Tasks.state';
 import {Observable} from 'rxjs';
@@ -8,8 +8,9 @@ import {AddTask, GetTasks} from '../../../../actions/tasks.actions';
 
 @Component({
   selector: 'app-backlog',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './backlog.component.html',
-  styleUrls: ['./backlog.component.sass']
+  styleUrls: ['./backlog.component.scss']
 })
 export class BacklogComponent implements OnInit {
   @Select(TasksState) tasks$: Observable<{ tasks: Task[] }>;

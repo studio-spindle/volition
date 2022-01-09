@@ -1,4 +1,4 @@
-import {Task} from '../shared/task/task.interface';
+import {Task} from '@shared';
 
 export class GetTasks {
   static readonly type = '[Task] GetTasks';
