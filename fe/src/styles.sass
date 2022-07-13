@@ -1,5 +1,5 @@
 @use 'sass:map'
-@use './design-tokens'
+@use 'src/design-tokens/tokens'
 
 // simple reset
 *
@@ -13,4 +13,4 @@ body
   overflow: auto
 
 body
-   background-color: map.get(design-tokens.$theme, color, support, grey-light)
+   background-color: map.get(tokens.$tokens, color, support, grey-light)
