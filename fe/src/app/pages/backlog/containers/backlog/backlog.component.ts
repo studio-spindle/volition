@@ -4,16 +4,19 @@ import {Task} from '@shared';
 import {FormBuilder, Validators} from '@angular/forms';
 import {TasksState} from '../../../../store/tasks/Tasks.state';
 import {Observable} from 'rxjs';
-import {AddTask, GetTasks} from '../../../../actions/tasks.actions';
+import {AddTask, GetTasks, GetUserInfo} from 'actions';
+import {UserState} from '../../../../store/user/User.state';
+import {UserStateModel} from '../../../../store/user/UserStateModel';
 
 @Component({
   selector: 'app-backlog',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './backlog.component.html',
-  styleUrls: ['./backlog.component.scss']
+  styleUrls: ['./backlog.component.sass']
 })
 export class BacklogComponent implements OnInit {
   @Select(TasksState) tasks$: Observable<{ tasks: Task[] }>;
+  @Select(UserState) user$: Observable<UserStateModel>;
 
   tasks: Task[];
 
@@ -35,9 +38,15 @@ export class BacklogComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new GetTasks());
+    this.store.dispatch(new GetUserInfo());
 
+    // TODO: do not subscribe, but pipe through the observable :)
     this.tasks$.subscribe((tasks) => {
       this.tasks = tasks.tasks;
+    });
+
+    this.user$.subscribe((user) => {
+      console.log('===> ', user);
     });
   }
 

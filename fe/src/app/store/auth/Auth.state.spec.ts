@@ -100,7 +100,7 @@ describe('Auth', () => {
         setupState();
         store.dispatch(new Login({ username: expectedState.username, password: '' }));
         const auth = store.selectSnapshot(state => state.auth);
-        console.log('===> ', auth);
+        console.log('===> auth: ', auth);
         expect(auth).toEqual(expectedState);
       });
     });

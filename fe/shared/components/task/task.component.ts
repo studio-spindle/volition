@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Task } from 'shared/task/task.interface';
+import { Task } from '@shared';
 
 @Component({
   selector: 'app-task',
-  styleUrls: ['task.component.scss'],
+  styleUrls: ['task.component.sass'],
   templateUrl: './task.component.html'
 })
 export class TaskComponent implements OnChanges, OnInit {

@@ -20,6 +20,8 @@ Run in sequence:
 - BE
 - FE
 
+Then in your browser you can open: `http://localhost:4200/`.
+
 ### Option 2: Manual Start
 
 #### 2.1 Database
