@@ -1,5 +1,5 @@
 import {Task} from '@shared';
 
-export interface TasksStateModel {
+export interface TasksState {
   tasks: Task[];
 }

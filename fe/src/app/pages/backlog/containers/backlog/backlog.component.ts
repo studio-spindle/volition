@@ -1,12 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {Select, Store} from '@ngxs/store';
 import {Task} from '@shared';
 import {FormBuilder, Validators} from '@angular/forms';
-import {TasksState} from '../../../../store/tasks/Tasks.state';
-import {Observable} from 'rxjs';
-import {AddTask, GetTasks, GetUserInfo} from 'actions';
-import {UserState} from '../../../../store/user/User.state';
-import {UserStateModel} from '../../../../store/user/UserStateModel';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-backlog',
@@ -15,15 +10,14 @@ import {UserStateModel} from '../../../../store/user/UserStateModel';
   styleUrls: ['./backlog.component.sass']
 })
 export class BacklogComponent implements OnInit {
-  @Select(TasksState) tasks$: Observable<{ tasks: Task[] }>;
-  @Select(UserState) user$: Observable<UserStateModel>;
 
-  tasks: Task[];
+  tasks$ = new BehaviorSubject<Task[]>(null);
 
   taskForm = this.formBuilder.group({
     title: ['' , Validators.compose([
       Validators.minLength(4),
       Validators.maxLength(60),
+      Validators.required,
     ])],
     description: ['' , Validators.compose([
       Validators.minLength(4),
@@ -33,27 +27,27 @@ export class BacklogComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store,
+    // private store: Store,
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(new GetTasks());
-    this.store.dispatch(new GetUserInfo());
+    // this.store.dispatch(getTasks());
+    // this.store.dispatch(new GetUserInfo());
 
-    // TODO: do not subscribe, but pipe through the observable :)
-    this.tasks$.subscribe((tasks) => {
-      this.tasks = tasks.tasks;
-    });
+    // this.store.getTasks().subscribe((res) => {
+    //   console.log('res: ', res);
+    // });
 
-    this.user$.subscribe((user) => {
-      console.log('===> ', user);
-    });
+    // this.user$.subscribe((user) => {
+    //   console.log('===> ', user);
+    // });
   }
 
   onSubmit() {
-    const { value }: { value: Task } = this.taskForm;
+    const { value } = this.taskForm;
+
     if (this.taskForm.valid) {
-      this.store.dispatch(new AddTask(value));
+      // this.store.dispatch(addTask({ title: value.title, description: value.description, status: TaskStatus.OPEN }));
     }
   }
 }

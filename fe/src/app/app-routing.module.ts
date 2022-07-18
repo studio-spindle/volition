@@ -7,8 +7,8 @@ import {UserDashboardModule} from './pages/user-dashboard/user-dashboard.module'
 import {BacklogModule} from './pages/backlog/backlog.module';
 
 const ROUTES: Routes = [
-  { path: '', canActivate: [AuthGuard], component: BacklogComponent },
-  { path: '', canActivate: [AuthGuard], component: UserDashboardComponent}
+  { path: '', pathMatch: 'full', canActivate: [AuthGuard], component: BacklogComponent },
+  { path: 'dashboard', canActivate: [AuthGuard], component: UserDashboardComponent },
 ];
 
 @NgModule({

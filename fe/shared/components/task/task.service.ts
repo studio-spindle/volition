@@ -1,4 +1,4 @@
-import { Task } from './task.interface';
+import {Task} from './task.interface';
 import {Observable} from 'rxjs';
 import api from '../../../src/api';
 import {HttpClient} from '@angular/common/http';

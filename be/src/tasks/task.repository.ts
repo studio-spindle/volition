@@ -3,7 +3,7 @@ import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
 import { CreateTaskDTO } from "./dto/create-task.dto";
 import { GetTasksFilterDto } from "./dto/get-tasks-filter.dto";
-import { User } from "src/auth/user.entity";
+import { UserEntity } from "src/auth/user/user.entity";
 import { Logger, InternalServerErrorException } from "@nestjs/common";
 
 @EntityRepository(Task)
@@ -12,7 +12,7 @@ export class TaskRepository extends Repository<Task> {
 
   async getTasks(
     filterDto: GetTasksFilterDto,
-    user: User,
+    user: UserEntity,
   ): Promise<Task[]> {
     const { status, search } = filterDto;
     const query = this.createQueryBuilder('task');
@@ -38,7 +38,7 @@ export class TaskRepository extends Repository<Task> {
 
   async createTask(
     createTaskDto: CreateTaskDTO,
-    user: User
+    user: UserEntity
   ): Promise<Task> {
     const { title, description } = createTaskDto;
 

@@ -1,11 +1,12 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Store} from '@ngxs/store';
-import {Login} from 'actions';
+import {Store} from '@ngrx/store';
 import {User} from '../../../models/User.interface';
 import {FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {catchError} from 'rxjs/operators';
-import {of} from 'rxjs';
+import {Observable} from 'rxjs';
+import {AuthState} from '../../../../store/auth/auth.state';
+import * as AuthActions from '../../../../store/auth/auth.actions';
+import {selectSignInFailedReason} from '../../../../store/auth/auth.selectors';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import {of} from 'rxjs';
       (isValidForm)="checkFormValidity($event)"
     >
       <h1>Login</h1>
-      <ng-container error>{{ signInFailedReason }}</ng-container>
+      <ng-container error>{{ signInFailedReason$ | async }}</ng-container>
       <ng-container action>
         <button type="submit" [disabled]="!buttonEnabled">Login</button>
       </ng-container>
@@ -27,7 +28,7 @@ import {of} from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   buttonEnabled = false;
-  signInFailedReason: string;
+  signInFailedReason$: Observable<string>;
   returnUrl: string;
 
   @Output()
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private store: Store,
+    private store: Store<AuthState>,
     private route: ActivatedRoute,
   ) { }
 
@@ -51,15 +52,7 @@ export class LoginComponent implements OnInit {
   loginUser(event: FormGroup) {
     const { value }: { value: User } = event;
 
-    this.store.dispatch(new Login(value))
-      .pipe(
-        catchError(({ error: { message }}) => {
-          this.signInFailedReason = message;
-          return of('');
-        })
-      ).subscribe(() => {
-        const redirectUrl = this.returnUrl || '/';
-        this.router.navigate([redirectUrl]);
-    });
+    this.store.dispatch(AuthActions.login({ credentials: value }));
+    this.signInFailedReason$ = this.store.select(selectSignInFailedReason);
   }
 }

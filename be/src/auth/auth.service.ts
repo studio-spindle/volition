@@ -1,33 +1,34 @@
-import { Injectable, UnauthorizedException, Logger } from '@nestjs/common';
-import { UserRepository } from './user.repository';
-import { InjectRepository } from '@nestjs/typeorm';
+import {Injectable, UnauthorizedException, Logger} from '@nestjs/common';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { JwtService } from '@nestjs/jwt';
-import { JwtPayload } from './jwt-payload.interface';
+import { JwtPayload } from './jwt/jwt-payload.interface';
+import * as bcrypt from 'bcrypt';
+import {UserService} from './user/user.service';
 
 @Injectable()
 export class AuthService {
   private logger = new Logger('AuthService');
 
   constructor(
-    @InjectRepository(UserRepository)
-    private userRepository: UserRepository,
-    private jwtService: JwtService,
+      private userService: UserService,
+      private jwtService: JwtService,
   ) {}
 
   async signUp(authcredentialsDto: AuthCredentialsDto): Promise<void> {
-    return this.userRepository.signUp(authcredentialsDto);
+    return this.userService.signUp(authcredentialsDto);
   }
 
   async signIn(authcredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string }> {
-    const username = await this.userRepository.validateUserPassword(authcredentialsDto);
+    const { username, password } = authcredentialsDto;
+    const user = await this.userService.findOneBy({username});
 
-    if (!username) {
+    if (!user && !(await bcrypt.compare(password, user?.password))) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
     const payload: JwtPayload = { username };
-    const accessToken = await this.jwtService.sign(payload);
+    const accessToken: string = await this.jwtService.sign(payload);
+
     this.logger.debug(`Generated JWT Token with payload ${JSON.stringify(payload)}`)
 
     return { accessToken };

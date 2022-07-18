@@ -11,13 +11,13 @@ export class AuthService {
     private http: HttpClient,
   ) {}
 
-  register({ username, password }: User): Observable<{}> {
+  register$({ username, password }: User): Observable<{}> {
     return this.http
       .post(`${api.BASEURL}${api.API_REGISTER}`, { username, password });
   }
 
-  login({ username, password }: User): Observable<{ accessToken?: string }> {
+  login$({ username, password }: User): Observable<{ accessToken?: string }> {
     return this.http
-      .post(`${api.BASEURL}${api.API_LOGIN}`, { username, password });
+      .post<{ accessToken: string }>(`${api.BASEURL}${api.API_LOGIN}`, { username, password });
   }
 }

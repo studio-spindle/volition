@@ -1,8 +1,8 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AuthState} from '../store/auth/Auth.state';
-import {Store} from '@ngxs/store';
+import {Store} from '@ngrx/store';
+import {selectToken} from '../store/auth/auth.selectors';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = this.store.selectSnapshot(AuthState.getToken);
+    const token = this.store.select(selectToken);
 
     if (token) {
       const cloned = req.clone({
