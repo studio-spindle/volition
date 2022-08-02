@@ -16,10 +16,7 @@ export const authStateReducer = createReducer(
     ...state,
     ...newState
   })),
-  on(AuthStateActions.logOut, (state) => {
-    console.log('newstate: ', { ...initialState });
-    return {
-      ...initialState, // removes authentication from state
-    };
-  })
+  on(AuthStateActions.logOut, (state) => ({
+    ...initialState, // removes authentication from state
+  }))
 );

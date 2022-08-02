@@ -17,7 +17,7 @@ export const registerFailure = createAction(
 
 export const login = createAction(
   '[AuthState] Login',
-  props<{ credentials: { username: string; password: string } }>()
+  props<{ credentials: { username: string; password: string }, returnUrl?: string }>()
 );
 
 export const loginSuccess = createAction(

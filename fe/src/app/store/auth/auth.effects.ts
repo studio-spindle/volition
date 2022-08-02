@@ -23,7 +23,7 @@ export class AuthEffects {
     )
   );
 
-  login = createEffect(() =>
+  login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthStateActions.login),
       exhaustMap(action =>
@@ -39,8 +39,7 @@ export class AuthEffects {
             });
           }),
           tap(() => {
-            // redirect to home route when succesfully logged in
-            this.router.navigate(['/']);
+            this.router.navigate([action.returnUrl || '/']);
           }),
           catchError(error => of(AuthStateActions.loginFailure({ error })))
     ))

@@ -52,7 +52,11 @@ export class LoginComponent implements OnInit {
   loginUser(event: FormGroup) {
     const { value }: { value: User } = event;
 
-    this.store.dispatch(AuthActions.login({ credentials: value }));
+    this.route.queryParams
+      .subscribe(({returnUrl}) => {
+        this.store.dispatch(AuthActions.login({ credentials: value, returnUrl }));
+      });
+
     this.signInFailedReason$ = this.store.select(selectSignInFailedReason);
   }
 }
