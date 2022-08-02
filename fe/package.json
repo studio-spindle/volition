@@ -25,6 +25,7 @@
     "@ngrx/store-devtools": "^14.0.2",
     "dayjs": "^1.9.6",
     "jwt-decode": "^3.1.2",
+    "lodash-es": "^4.17.21",
     "rxjs": "^7.5.6",
     "tslib": "^2.3.1",
     "zone.js": "~0.11.4"

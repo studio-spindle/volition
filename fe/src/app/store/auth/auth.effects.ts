@@ -7,6 +7,7 @@ import jwt_decode, {JwtPayload} from 'jwt-decode';
 import {Router} from '@angular/router';
 import * as AuthStateActions from './auth.actions';
 import * as dayjs from 'dayjs';
+import {LocalStorageKeys} from './auth.metareducer';
 
 @Injectable()
 export class AuthEffects {
@@ -44,6 +45,17 @@ export class AuthEffects {
           catchError(error => of(AuthStateActions.loginFailure({ error })))
     ))
   ));
+
+  logOut$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(AuthStateActions.logOut),
+      tap(() => {
+        // reminder: state is cleared in reducer
+        localStorage.removeItem(LocalStorageKeys.AUTH);
+      })
+    ),
+    { dispatch: false }
+  );
 
   constructor(
     private actions$: Actions,

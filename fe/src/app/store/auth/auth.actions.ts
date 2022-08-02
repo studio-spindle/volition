@@ -21,7 +21,7 @@ export const login = createAction(
 );
 
 export const loginSuccess = createAction(
-  '[AuthState] Logged in sucessfully',
+  '[AuthState] Logged in successfully',
   props<AuthState>()
 );
 

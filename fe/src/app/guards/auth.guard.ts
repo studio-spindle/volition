@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {selectIsAuthenticated} from '../store/auth/auth.selectors';
+import {selectIsLoggedIn} from '../store/auth/auth.selectors';
 import {Subject, takeUntil} from 'rxjs';
 import {AuthState} from '../store/auth/auth.state';
 
@@ -15,7 +15,9 @@ export class AuthGuard implements CanActivate, OnDestroy {
   ) {}
 
   canActivate(_, routerState: RouterStateSnapshot) {
-    this.store.select(selectIsAuthenticated)
+
+    // TODO: check if this also uses the expiration time. Perhaps selectIsLoggedIn should be used
+    this.store.select(selectIsLoggedIn)
       .pipe(takeUntil(this.destroy$))
       .subscribe((isAuthenticated) => {
         if (isAuthenticated === false) {

@@ -16,15 +16,16 @@ import {TasksEffects} from './store/tasks/tasks.effect';
 import {UserEffects} from './store/user/user.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {HeaderModule} from './components/header/header.module';
+import {authMetaReducer} from './store/auth/auth.metareducer';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    StoreModule.forRoot({
-      auth: authStateReducer
+    StoreModule.forRoot([]),
+    StoreModule.forFeature('auth', authStateReducer, {
+      metaReducers: [authMetaReducer]
     }),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
