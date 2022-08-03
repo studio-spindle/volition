@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 import {AuthState} from '../../../../store/auth/auth.state';
 import * as AuthActions from '../../../../store/auth/auth.actions';
 import {selectSignInFailedReason} from '../../../../store/auth/auth.selectors';
+import {clearLoginFailure} from '../../../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ import {selectSignInFailedReason} from '../../../../store/auth/auth.selectors';
 })
 export class LoginComponent implements OnInit {
   buttonEnabled = false;
-  signInFailedReason$: Observable<string>;
+  signInFailedReason$: Observable<string> = this.store.select(selectSignInFailedReason);
   returnUrl: string;
 
   @Output()
@@ -52,11 +53,10 @@ export class LoginComponent implements OnInit {
   loginUser(event: FormGroup) {
     const { value }: { value: User } = event;
 
+    this.store.dispatch(clearLoginFailure());
     this.route.queryParams
       .subscribe(({returnUrl}) => {
         this.store.dispatch(AuthActions.login({ credentials: value, returnUrl }));
       });
-
-    this.signInFailedReason$ = this.store.select(selectSignInFailedReason);
   }
 }

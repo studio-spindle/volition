@@ -11,7 +11,7 @@ function getStateFromLocalStorage(key: string): any {
 
 const stateKeysToStore: Array<keyof AuthState> = ['token', 'expiresAt', 'username'];
 
-export enum LocalStorageKeys {
+export enum LocalStorageKey {
   AUTH = '__auth__'
 }
 
@@ -24,13 +24,13 @@ export function authMetaReducer<S, A extends Action = Action>(reducer: ActionRed
     // only on initialisation of the application set the state based on localstorage
     if (onInit) {
       onInit = false;
-      const stateFromLocalStorage = getStateFromLocalStorage(LocalStorageKeys.AUTH);
+      const stateFromLocalStorage = getStateFromLocalStorage(LocalStorageKey.AUTH);
       return merge(nextState, stateFromLocalStorage);
     }
 
     // otherwise save changes to localstorage
     const stateToStore = pick(nextState, stateKeysToStore);
-    setStateInLocalStorage(stateToStore, LocalStorageKeys.AUTH);
+    setStateInLocalStorage(stateToStore, LocalStorageKey.AUTH);
     return nextState;
   };
 }

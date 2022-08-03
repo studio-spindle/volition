@@ -18,5 +18,21 @@ export const authStateReducer = createReducer(
   })),
   on(AuthStateActions.logOut, () => {
     return initialState; // removes authentication from state
-  })
+  }),
+  on(AuthStateActions.registerFailure, (state, newState: { error: string }) => ({
+    ...state,
+    selectRegisterFailedReason: newState.error
+  })),
+  on(AuthStateActions.clearRegisterFailure, (state) => ({
+    ...state,
+    selectRegisterFailedReason: null
+  })),
+  on(AuthStateActions.loginFailure, (state, newState: { error: string }) => ({
+    ...state,
+    signInFailedReason: newState.error
+  })),
+  on(AuthStateActions.clearLoginFailure, (state) => ({
+    ...state,
+    signInFailedReason: null
+  })),
 );

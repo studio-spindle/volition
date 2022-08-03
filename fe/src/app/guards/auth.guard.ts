@@ -15,12 +15,10 @@ export class AuthGuard implements CanActivate, OnDestroy {
   ) {}
 
   canActivate(_, routerState: RouterStateSnapshot) {
-
-    // TODO: check if this also uses the expiration time. Perhaps selectIsLoggedIn should be used
     this.store.select(selectIsLoggedIn)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((isAuthenticated) => {
-        if (isAuthenticated === false) {
+      .subscribe((isLoggedIn) => {
+        if (isLoggedIn === false) {
           this.router.navigate(['auth/login'], { queryParams: { returnUrl: routerState.url } });
           return false;
         }

@@ -2,8 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from '../../../models/User.interface';
 import {FormGroup} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {Observable, of} from 'rxjs';
-import { register } from 'src/app/store/auth/auth.actions';
+import {Observable} from 'rxjs';
+import {register, clearRegisterFailure} from 'src/app/store/auth/auth.actions';
 import {selectRegisterFailedReason} from '../../../../store/auth/auth.selectors';
 
 // TODO: This component should only be visible if you were invited to join. (create generic password)
@@ -28,14 +28,14 @@ import {selectRegisterFailedReason} from '../../../../store/auth/auth.selectors'
 })
 export class RegisterComponent implements OnInit {
   buttonEnabled = false;
-  saveFailedReason$: Observable<string>;
+  saveFailedReason$: Observable<string> = this.store.select(selectRegisterFailedReason);
 
   @Output()
   update: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(
     private store: Store,
-  ) { }
+  ) {}
 
   ngOnInit(): void {}
 
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
   handleRegister(event: FormGroup) {
     const { value }: { value: User } = event;
 
-    this.store.dispatch(register({credentials: value}));
-    this.saveFailedReason$ = this.store.select(selectRegisterFailedReason);
+    this.store.dispatch(clearRegisterFailure());
+    this.store.dispatch(register({ credentials: value }));
   }
 }

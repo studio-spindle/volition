@@ -15,6 +15,10 @@ export const registerFailure = createAction(
   props<{ error: string }>()
 );
 
+export const clearRegisterFailure = createAction(
+  '[AutState] Registered failure cleared',
+);
+
 export const login = createAction(
   '[AuthState] Login',
   props<{ credentials: { username: string; password: string }, returnUrl?: string }>()
@@ -28,6 +32,10 @@ export const loginSuccess = createAction(
 export const loginFailure = createAction(
   '[AuthState] Login failed',
   props<{ error: string }>()
+);
+
+export const clearLoginFailure = createAction(
+  '[AutState] Login failure cleared',
 );
 
 export const logOut = createAction(

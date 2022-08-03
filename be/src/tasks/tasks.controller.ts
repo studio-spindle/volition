@@ -30,6 +30,7 @@ export class TasksController {
     @Param('id', ParseIntPipe) id: number,
     @GetUser() user: UserEntity,
   ): Promise<Task> {
+    this.logger.verbose(`Get task by id ${id}`);
     return this.tasksService.getTaskById(id, user);
   }
 

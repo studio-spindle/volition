@@ -7,7 +7,7 @@ import jwt_decode, {JwtPayload} from 'jwt-decode';
 import {Router} from '@angular/router';
 import * as AuthStateActions from './auth.actions';
 import * as dayjs from 'dayjs';
-import {LocalStorageKeys} from './auth.metareducer';
+import {LocalStorageKey} from './auth.metareducer';
 
 @Injectable()
 export class AuthEffects {
@@ -18,7 +18,12 @@ export class AuthEffects {
       exhaustMap(action =>
         this.authService.register$(action.credentials).pipe(
           map(() => AuthStateActions.registerSuccess()),
-          catchError(error => of(AuthStateActions.registerFailure({ error })))
+          tap(() => {
+            this.router.navigate(['/']);
+          }),
+          catchError(response => {
+            return of(AuthStateActions.registerFailure({ error: response.error.message }));
+          })
         )
       )
     )
@@ -42,7 +47,7 @@ export class AuthEffects {
           tap(() => {
             this.router.navigate([action.returnUrl || '/']);
           }),
-          catchError(error => of(AuthStateActions.loginFailure({ error })))
+          catchError(response => of(AuthStateActions.loginFailure({ error: response.error.message })))
     ))
   ));
 
@@ -51,7 +56,7 @@ export class AuthEffects {
       ofType(AuthStateActions.logOut),
       tap(() => {
         // reminder: state is cleared in reducer
-        localStorage.removeItem(LocalStorageKeys.AUTH);
+        localStorage.removeItem(LocalStorageKey.AUTH);
       })
     ),
     { dispatch: false }
