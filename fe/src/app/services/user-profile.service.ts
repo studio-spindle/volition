@@ -2,19 +2,17 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import api from '../../api';
 import {Observable} from 'rxjs';
-import {UserModel} from '../store/user/user.model';
+import {UserProfileModel} from '../store/user-profile/user-profile.model';
 
 @Injectable()
-export class UserService {
+export class UserProfileService {
 
   constructor(
     private http: HttpClient,
   ) {}
 
-  getUserInfo$(): Observable<UserModel> {
-    // this.store.dispatch(new GetUserInfo());
-
+  getUserProfile$(id: number): Observable<UserProfileModel> {
     return this.http
-      .get<UserModel>(`${api.BASEURL}${api.USER}`);
+      .get<UserProfileModel>(`${api.BASEURL}${api.USER_PROFILE}/${id}`);
   }
 }

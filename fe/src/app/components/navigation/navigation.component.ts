@@ -12,6 +12,11 @@ interface Nav {
   styleUrls: ['navigation.component.sass']
 })
 export class NavigationComponent {
+
+  // constructor(private userProfileService: UserProfileService) {
+  //   console.log('===> ', this.userProfileService.getUserProfileByUserId({ id: 1 }));
+  // }
+
   nav: Nav[] = [
     {
       link: '/',

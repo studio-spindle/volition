@@ -16,8 +16,8 @@ export class AuthService {
       .post(`${api.BASEURL}${api.API_REGISTER}`, { username, password });
   }
 
-  login$({ username, password }: User): Observable<{ accessToken?: string }> {
+  login$({ username, password }: User): Observable<{ accessToken?: string, id: number }> {
     return this.http
-      .post<{ accessToken: string }>(`${api.BASEURL}${api.API_LOGIN}`, { username, password });
+      .post<{ accessToken: string, id: number }>(`${api.BASEURL}${api.API_LOGIN}`, { username, password });
   }
 }

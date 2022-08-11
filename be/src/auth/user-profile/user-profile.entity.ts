@@ -10,4 +10,7 @@ export class UserProfileEntity extends BaseEntity {
 
     @Column({ nullable: true })
     photo: string;
+
+    @Column({ nullable: true })
+    organisation: string;
 }

@@ -11,11 +11,11 @@ export class AuthGuard implements CanActivate, OnDestroy {
 
   constructor(
     private router: Router,
-    private store: Store<AuthState>,
+    private authStateStore: Store<AuthState>,
   ) {}
 
   canActivate(_, routerState: RouterStateSnapshot) {
-    this.store.select(selectIsLoggedIn)
+    this.authStateStore.select(selectIsLoggedIn)
       .pipe(takeUntil(this.destroy$))
       .subscribe((isLoggedIn) => {
         if (isLoggedIn === false) {

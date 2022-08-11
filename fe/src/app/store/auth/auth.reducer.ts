@@ -5,9 +5,10 @@ import * as AuthStateActions from './auth.actions';
 export const initialState: AuthState = {
   token: null,
   username: null,
+  id: null,
   expiresAt: null,
   signInFailedReason: null,
-  selectRegisterFailedReason: null,
+  registerFailedReason: null,
 };
 
 export const authStateReducer = createReducer(

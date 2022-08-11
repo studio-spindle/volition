@@ -34,14 +34,15 @@ export class AuthEffects {
       ofType(AuthStateActions.login),
       exhaustMap(action =>
         this.authService.login$(action.credentials).pipe(
-          map(({ accessToken }) => {
+          map(({ accessToken, id }) => {
             const {exp} = jwt_decode<JwtPayload>(accessToken);
             const expiresAt = dayjs.unix(exp).format();
 
             return AuthStateActions.loginSuccess({
               token: accessToken,
               username: action.credentials.username,
-              expiresAt
+              expiresAt,
+              id
             });
           }),
           tap(() => {

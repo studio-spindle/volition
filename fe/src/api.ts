@@ -4,5 +4,5 @@ export default {
   API_REGISTER: '/auth/signup',
   API_LOGIN: '/auth/signin',
   TASKS: '/tasks',
-  USER: '/user'
+  USER_PROFILE: '/user-profile'
 };

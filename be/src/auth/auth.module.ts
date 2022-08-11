@@ -29,7 +29,7 @@ const jwtConfig = config.get('jwt');
   ],
   providers: [
     AuthService,
-    JwtStrategy
+    JwtStrategy,
   ],
   exports: [
     JwtStrategy,

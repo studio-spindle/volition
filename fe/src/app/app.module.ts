@@ -8,15 +8,16 @@ import {WildcardRoutingModule} from './wildcard-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './interceptors/auth-interceptor';
 import {CommonModule} from '@angular/common';
-import {UserService} from './services/user.service';
+import {UserProfileService} from './services/user-profile.service';
 import {authStateReducer} from './store/auth/auth.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './store/auth/auth.effects';
 import {TasksEffects} from './store/tasks/tasks.effect';
-import {UserEffects} from './store/user/user.effects';
+import {UserProfileEffects} from './store/user-profile/user-profile.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {authMetaReducer} from './store/auth/auth.metareducer';
+import {userProfileReducer} from './store/user-profile/user-profile.reducer';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,12 @@ import {authMetaReducer} from './store/auth/auth.metareducer';
     StoreModule.forFeature('auth', authStateReducer, {
       metaReducers: [authMetaReducer]
     }),
+    StoreModule.forFeature('userProfile', userProfileReducer),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
       autoPause: true,
     }) : [],
-    EffectsModule.forRoot([AuthEffects, UserEffects, TasksEffects]),
+    EffectsModule.forRoot([AuthEffects, UserProfileEffects, TasksEffects]),
     BrowserModule,
     AppRoutingModule,
     AuthModule,
@@ -45,7 +47,7 @@ import {authMetaReducer} from './store/auth/auth.metareducer';
       useClass: AuthInterceptor,
       multi: true,
     },
-    UserService,
+    UserProfileService,
   ],
   bootstrap: [AppComponent],
   exports: [],

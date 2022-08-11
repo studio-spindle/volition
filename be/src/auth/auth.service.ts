@@ -18,7 +18,7 @@ export class AuthService {
     return this.userService.signUp(authcredentialsDto);
   }
 
-  async signIn(authcredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string }> {
+  async signIn(authcredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string, id: number }> {
     const { username, password } = authcredentialsDto;
     const user = await this.userService.findOneBy({username});
 
@@ -31,6 +31,6 @@ export class AuthService {
 
     this.logger.debug(`Generated JWT Token with payload ${JSON.stringify(payload)}`)
 
-    return { accessToken };
+    return { accessToken, id: user.id };
   }
 }
