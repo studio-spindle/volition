@@ -3,7 +3,7 @@
     <app-navigation></app-navigation>
   </app-column>
   <app-column>
-    <img [src]="photoUrl$ | async | safe: 'url'" alt="Profile image">
+    <app-profile-image [url$]="photoUrl$"></app-profile-image>
   </app-column>
   <app-column>
     <button (click)="logout()">Logout</button>

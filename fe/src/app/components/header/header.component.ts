@@ -7,7 +7,7 @@ import {UserProfileState} from '../../store/user-profile/user-profile.state';
 import {selectUserId} from '../../store/auth/auth.selectors';
 import {selectPhoto} from '../../store/user-profile/user-profile.selectors';
 import {Observable, skipWhile, Subject, takeUntil} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import api from '../../../api';
 

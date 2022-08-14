@@ -6,8 +6,8 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt/jwt.strategy';
 import * as config from 'config';
 import {UserModule} from './user/user.module';
-import {UserProfileModule} from './user-profile/user-profile.module';
-import {UserProfileController} from './user-profile/user-profile.controller';
+import {UserProfileModule} from '../user-profile/user-profile.module';
+import {UserProfileController} from '../user-profile/user-profile.controller';
 
 const jwtConfig = config.get('jwt');
 

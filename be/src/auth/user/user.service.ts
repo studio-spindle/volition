@@ -4,7 +4,7 @@ import {Repository} from 'typeorm';
 import {UserEntity} from './user.entity';
 import * as bcrypt from 'bcrypt';
 import {InjectRepository} from '@nestjs/typeorm';
-import {UserProfileEntity} from '../user-profile/user-profile.entity';
+import {UserProfileEntity} from '../../user-profile/user-profile.entity';
 
 enum ErrorCodes {
     DUPLICATE_USERNAME = '23505'

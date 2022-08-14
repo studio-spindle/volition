@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-const maxFileSizeInKb = 1024 * 1024 * 2; // max size 2mb
+const maxFileSizeInKb = 1024 * 1024 * 5; // max size 5mb
 export const allowedFileExtensions = ['.jpg', '.png'];
 
 export enum FileValidationErrors {

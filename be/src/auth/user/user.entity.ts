@@ -1,7 +1,7 @@
 import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany, OneToOne, JoinColumn} from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import {Task} from "../../tasks/task.entity";
-import {UserProfileEntity} from '../user-profile/user-profile.entity';
+import {UserProfileEntity} from '../../user-profile/user-profile.entity';
 
 /**
  * Used to store identity data, i.e.: username, password hash, e-mail address, etc.

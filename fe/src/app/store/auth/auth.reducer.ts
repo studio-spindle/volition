@@ -2,7 +2,7 @@ import {createReducer, on} from '@ngrx/store';
 import {AuthState} from './auth.state';
 import * as AuthStateActions from './auth.actions';
 
-export const initialState: AuthState = {
+const initialState: AuthState = {
   token: null,
   username: null,
   id: null,
@@ -12,7 +12,7 @@ export const initialState: AuthState = {
 };
 
 export const authStateReducer = createReducer(
-  initialState,
+  { ...initialState }, // clone so initial state variable isn't overwritten
   on(AuthStateActions.loginSuccess, (state, newState: AuthState) => ({
     ...state,
     ...newState

@@ -16,8 +16,15 @@ import {TasksEffects} from './store/tasks/tasks.effect';
 import {UserProfileEffects} from './store/user-profile/user-profile.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {authMetaReducer} from './store/auth/auth.metareducer';
 import {userProfileReducer} from './store/user-profile/user-profile.reducer';
+import {createHydrationReducerForFeature} from './store/hydrate.metareducer';
+import {AuthState} from './store/auth/auth.state';
+import {UserProfileState} from './store/user-profile/user-profile.state';
+
+export enum LocalStorageKeys {
+  AUTH = '__auth__',
+  USER_PROFILE = '__user_profile__'
+}
 
 @NgModule({
   declarations: [
@@ -26,9 +33,21 @@ import {userProfileReducer} from './store/user-profile/user-profile.reducer';
   imports: [
     StoreModule.forRoot([]),
     StoreModule.forFeature('auth', authStateReducer, {
-      metaReducers: [authMetaReducer]
+      metaReducers: [
+        createHydrationReducerForFeature<AuthState>(
+          LocalStorageKeys.AUTH,
+          ['token', 'expiresAt', 'username']
+        )
+      ]
     }),
-    StoreModule.forFeature('userProfile', userProfileReducer),
+    StoreModule.forFeature('userProfile', userProfileReducer, {
+      metaReducers: [
+        createHydrationReducerForFeature<UserProfileState>(
+          LocalStorageKeys.USER_PROFILE,
+          ['photo']
+        )
+      ]
+    }),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
       autoPause: true,
@@ -52,4 +71,5 @@ import {userProfileReducer} from './store/user-profile/user-profile.reducer';
   bootstrap: [AppComponent],
   exports: [],
 })
-export class AppModule {}
+export class AppModule {
+}
