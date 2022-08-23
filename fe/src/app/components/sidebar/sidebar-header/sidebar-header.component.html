@@ -1,0 +1,26 @@
+<app-row>
+  <app-column class="padding-m justify-right">
+    <button class="button-user-menu-toggle" (click)="toggleUserMenu()">
+      <app-profile-image [url$]="photoUrl$"></app-profile-image>
+      <app-icon
+        [iconUri]="IconPaths.ANGLE_SMALL_DOWN"
+        altText="icon caret down"
+        class="align-center"
+      ></app-icon>
+    </button>
+  </app-column>
+</app-row>
+<app-row *ngIf="userMenuActive">
+  <div class="submenu padding-l">
+    <!-- TODO: can be made into a button component with icon -->
+    <button class="button-logout padding-m" (click)="logout()">
+      <span class="button-icon">
+        <app-icon
+          [iconUri]="IconPaths.SIGN_OUT_ALT"
+          altText="icon logout"
+        ></app-icon>
+      </span>
+      <span class="button-text">Logout</span>
+    </button>
+  </div>
+</app-row>

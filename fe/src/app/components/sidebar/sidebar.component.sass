@@ -1,0 +1,9 @@
+@use 'sass:map'
+@use 'src/design-tokens/tokens'
+
+\:host
+  display: block
+  width: 260px
+  height: 100%
+  position: absolute
+  background-color: map.get(tokens.$tokens, color, brackgrounds, primary)

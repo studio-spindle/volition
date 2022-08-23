@@ -1,2 +1,15 @@
+@use 'sass:map'
+@use 'src/design-tokens/tokens'
+
 .active
+  color: map.get(tokens.$tokens, color, utility, grey-dark)
+  &:hover
+    cursor: default
+
+a
+  color: map.get(tokens.$tokens, color, utility, grey)
   text-decoration: none
+  display: flex
+
+  &:hover
+    color: map.get(tokens.$tokens, color, utility, grey-dark)

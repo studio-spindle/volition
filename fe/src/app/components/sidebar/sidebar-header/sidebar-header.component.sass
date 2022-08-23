@@ -1,0 +1,32 @@
+@use 'sass:map'
+@use 'src/design-tokens/tokens'
+
+\:host
+  display: flex
+  flex-direction: column
+  margin-bottom: 2rem
+
+.button-user-menu-toggle
+  display: flex
+  background-color: transparent
+  border: none
+  &:hover
+    cursor: pointer
+
+.button-logout
+  //color: white
+  background-color: transparent
+  border: none
+  display: flex
+  width: 100%
+  &:hover
+    cursor: pointer
+    background-color: map.get(tokens.$tokens, color, utility, grey-dark)
+
+.submenu
+  width: 100%
+  display: flex
+  background-color: map.get(tokens.$tokens, color, utility, grey-dark)
+  border-top-left-radius: .5rem
+  border-bottom-right-radius: .5rem
+  border-bottom-left-radius: .5rem

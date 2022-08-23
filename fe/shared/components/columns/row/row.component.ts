@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-columns',
-  templateUrl: './columns.component.html',
-  styleUrls: ['./columns.component.sass'],
+  selector: 'app-row',
+  templateUrl: './row.component.html',
+  styleUrls: ['./row.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ColumnsComponent implements OnInit {
+export class RowComponent implements OnInit {
 
   constructor() { }
 

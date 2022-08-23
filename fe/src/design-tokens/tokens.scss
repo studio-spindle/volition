@@ -1,9 +1,13 @@
 $tokens: (
   color: (
     brand: (
-      primary: #000
+      primary: #44d62c
     ),
-    support: (
+    brackgrounds: (
+      primary: #fff,
+      secondary: #F6F8FA
+    ),
+    utility: (
       white: #fff,
       black: #000,
       grey: #A3B0BA,
@@ -33,5 +37,5 @@ $tokens: (
       l: 1280,
       xl: 1960
     )
-  )
+  ),
 );

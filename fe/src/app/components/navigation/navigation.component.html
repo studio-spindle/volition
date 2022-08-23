@@ -1,10 +1,17 @@
 <nav>
-  <a
-    *ngFor="let item of nav"
-    [routerLink]="item.link"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: item.exact }"
-  >
-    {{ item.name }}
-  </a>
+  <ul>
+    <li *ngFor="let item of nav" class="padding-m">
+      <a
+        [routerLink]="item.link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.exact }"
+      >
+        <app-icon
+          [iconUri]="item.icon"
+          [altText]="item.iconAltText"
+        ></app-icon>
+        {{ item.name }}
+      </a>
+    </li>
+  </ul>
 </nav>

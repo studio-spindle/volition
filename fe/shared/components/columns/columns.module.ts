@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
-import {ColumnsComponent} from './columns/columns.component';
+import {RowComponent} from './row/row.component';
 import {ColumnComponent} from './column/column.component';
 
 @NgModule({
-  declarations: [ColumnsComponent, ColumnComponent],
-  exports: [ColumnsComponent, ColumnComponent],
+  declarations: [RowComponent, ColumnComponent],
+  exports: [RowComponent, ColumnComponent],
 })
 export class ColumnsModule {}

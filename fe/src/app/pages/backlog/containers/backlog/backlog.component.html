@@ -1,4 +1,7 @@
-<app-header></app-header>
+<app-sidebar>
+  <app-sidebar-header></app-sidebar-header>
+  <app-navigation></app-navigation>
+</app-sidebar>
 
 <div class="center-content-area">
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
