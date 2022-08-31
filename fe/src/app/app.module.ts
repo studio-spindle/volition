@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {StoreModule} from '@ngrx/store';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AuthModule} from './auth/auth.module';
 import {WildcardRoutingModule} from './wildcard-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './interceptors/auth-interceptor';
@@ -31,6 +30,10 @@ export enum LocalStorageKeys {
     AppComponent,
   ],
   imports: [
+    !environment.production ? StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      autoPause: true,
+    }) : [],
     StoreModule.forRoot([]),
     StoreModule.forFeature('auth', authStateReducer, {
       metaReducers: [
@@ -48,14 +51,9 @@ export enum LocalStorageKeys {
         )
       ]
     }),
-    !environment.production ? StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      autoPause: true,
-    }) : [],
     EffectsModule.forRoot([AuthEffects, UserProfileEffects, TasksEffects]),
     BrowserModule,
     AppRoutingModule,
-    AuthModule,
     WildcardRoutingModule,
     HttpClientModule,
     CommonModule,

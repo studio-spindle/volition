@@ -15,8 +15,8 @@ export class TasksService {
       .get(`${api.BASEURL}${api.TASKS}`);
   }
 
-  createTask({ title, description, status }: Task): Observable<{}> {
+  createTask({ title, status }: Task): Observable<{}> {
     return this.http
-      .post(`${api.BASEURL}${api.TASKS}`, { title, description, status });
+      .post(`${api.BASEURL}${api.TASKS}`, { title, status });
   }
 }

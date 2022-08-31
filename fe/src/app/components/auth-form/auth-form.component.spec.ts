@@ -4,7 +4,7 @@ import {AuthFormComponent} from './auth-form.component';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
-import {passwordMatch} from '../../../../../../../be/src/validation-helpers';
+import {passwordMatch} from '../../../../../be/src/validation-helpers';
 
 describe('AuthFormComponent', () => {
   let component: AuthFormComponent;

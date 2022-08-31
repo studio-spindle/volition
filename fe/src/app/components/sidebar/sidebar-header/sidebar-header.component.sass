@@ -27,6 +27,6 @@
   width: 100%
   display: flex
   background-color: map.get(tokens.$tokens, color, utility, grey-dark)
-  border-top-left-radius: .5rem
-  border-bottom-right-radius: .5rem
-  border-bottom-left-radius: .5rem
+  border-top-left-radius: map.get(tokens.$tokens, borderRadius, component) + rem
+  border-bottom-right-radius: map.get(tokens.$tokens, borderRadius, component) + rem
+  border-bottom-left-radius: map.get(tokens.$tokens, borderRadius, component) + rem

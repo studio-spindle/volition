@@ -3,9 +3,7 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as TasksActions from './tasks.actions';
 import {Task, TasksService} from '@shared';
 import {exhaustMap, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
-import {addTask} from './tasks.actions';
-import * as AuthStateActions from '../auth/auth.actions';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable()
 export class TasksEffects {

@@ -2,10 +2,12 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './containers/login-view/login-view.component';
-import {SharedModule} from '../shared/shared.module';
+import {LoginComponent} from './login-view/login-view.component';
+import {AuthFormModule} from '../../components/auth-form/auth-form.module';
+import {AuthGuard} from '../../guards/auth.guard';
+import {AuthService} from '../../services/auth.service';
 
-export const ROUTES: Routes = [
+const ROUTES: Routes = [
   { path: '', component: LoginComponent }
 ];
 
@@ -13,9 +15,13 @@ export const ROUTES: Routes = [
   declarations: [LoginComponent],
   imports: [
     CommonModule,
-    SharedModule,
     FormsModule,
     RouterModule.forChild(ROUTES),
+    AuthFormModule,
+  ],
+  providers: [
+    AuthGuard,
+    AuthService,
   ],
 })
 export class LoginModule {}

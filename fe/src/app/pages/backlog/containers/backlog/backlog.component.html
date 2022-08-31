@@ -3,24 +3,11 @@
   <app-navigation></app-navigation>
 </app-sidebar>
 
-<div class="center-content-area">
-  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-    <div class="form-row">
-      <div class="form-field">
-        <app-input label="Title" name="title"></app-input>
-      </div>
-      <div class="form-field">
-        <app-input label="Start date" name="startDate"></app-input>
-      </div>
-      <div class="form-field">
-        <app-input label="End date" name="endDate"></app-input>
-      </div>
-      <div class="form-field">
-        <button type="submit">Save</button>
-      </div>
-    </div>
-  </form>
-</div>
+<main clas="content-area">
+  <div class="centered">
+    <app-create-task></app-create-task>
+  </div>
+</main>
 
 <ul>
 <!--  <li *ngFor="let task of tasks$ | async; let i = index;">-->

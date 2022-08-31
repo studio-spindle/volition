@@ -4,7 +4,7 @@ import {FormGroup} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {register, clearRegisterFailure} from 'src/app/store/auth/auth.actions';
-import {selectRegisterFailedReason} from '../../../../store/auth/auth.selectors';
+import {selectRegisterFailedReason} from '../../../store/auth/auth.selectors';
 
 // TODO: This component should only be visible if you were invited to join. (create generic password)
 

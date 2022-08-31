@@ -2,52 +2,13 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 // This import only works if this stays a monorepo. Otherwise make a separate package from it
-import { passwordMatch } from '../../../../../../../be/src/validation-helpers';
+import { passwordMatch } from '../../../../../be/src/validation-helpers';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-auth-form',
   styleUrls: ['auth-form.component.sass'],
-  template: `
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <ng-content select="h1"></ng-content>
-      <div class="form-row form-row__field">
-        <label for="username">
-          Gebruikersnaam*:
-        </label>
-        <input
-          type="text"
-          id="username"
-          formControlName="username"
-        />
-      </div>
-      <div class="form-row form-row__field">
-        <label for="password">
-          Wachtwoord*:
-        </label>
-        <input
-          type="password"
-          id="password"
-          formControlName="password"
-        />
-      </div>
-      <div class="form-row">
-        <div class="error" *ngIf="usernameInvalid">
-          {{ usernameInvalid }}
-        </div>
-        <div class="error" *ngIf="passwordInvalid">
-          {{ passwordInvalid }}
-        </div>
-        <div class="error">
-          <ng-content select="[error]"></ng-content>
-        </div>
-      </div>
-      <div class="form-row form-row__action">
-        <ng-content select="[action]"></ng-content>
-      </div>
-      <ng-content select="[fallback]"></ng-content>
-    </form>
-  `
+  templateUrl: './auth-form.component.html'
 })
 export class AuthFormComponent implements OnInit {
   @Output()

@@ -1,5 +1,14 @@
+@use 'sass:map'
+@use 'src/design-tokens/tokens'
+
+\:host
+  display: flex
+
 .label
   display: none
 
 input
+  width: 100%
   border: none
+  height: 1.5rem
+  border-radius: map.get(tokens.$tokens, borderRadius, component) + rem

@@ -4,10 +4,10 @@ import {User} from '../../../models/User.interface';
 import {FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {AuthState} from '../../../../store/auth/auth.state';
-import * as AuthActions from '../../../../store/auth/auth.actions';
-import {selectSignInFailedReason} from '../../../../store/auth/auth.selectors';
-import {clearLoginFailure} from '../../../../store/auth/auth.actions';
+import {AuthState} from '../../../store/auth/auth.state';
+import * as AuthActions from '../../../store/auth/auth.actions';
+import {selectSignInFailedReason} from '../../../store/auth/auth.selectors';
+import {clearLoginFailure} from '../../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-login',

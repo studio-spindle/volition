@@ -1,6 +1,6 @@
 import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany, OneToOne, JoinColumn} from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import {Task} from "../../tasks/task.entity";
+import {TaskEntity} from "../../tasks/task.entity";
 import {UserProfileEntity} from '../../user-profile/user-profile.entity';
 
 /**
@@ -21,8 +21,8 @@ export class UserEntity extends BaseEntity {
   @Column()
   salt: string;
 
-  @OneToMany(() => Task, task => task.user, { eager:true })
-  tasks: Task[];
+  @OneToMany(() => TaskEntity, task => task.user, { eager:true })
+  tasks: TaskEntity[];
 
   @OneToOne(() => UserProfileEntity, { eager: true, cascade: true })
   @JoinColumn()

@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ng-content select="h1"></ng-content>
+  <div class="form-row form-row__field">
+    <app-input
+      label="Gebruikersnaam*:"
+      name="username"
+      [control]="form.get('username')"
+    ></app-input>
+  </div>
+  <div class="form-row form-row__field">
+    <app-input
+      label="Wachtwoord*:"
+      name="password"
+      [control]="form.get('password')"
+    ></app-input>
+  </div>
+  <div class="form-row">
+    <div class="error" *ngIf="usernameInvalid">
+      {{ usernameInvalid }}
+    </div>
+    <div class="error" *ngIf="passwordInvalid">
+      {{ passwordInvalid }}
+    </div>
+    <div class="error">
+      <ng-content select="[error]"></ng-content>
+    </div>
+  </div>
+  <div class="form-row form-row__action">
+    <ng-content select="[action]"></ng-content>
+  </div>
+  <ng-content select="[fallback]"></ng-content>
+</form>

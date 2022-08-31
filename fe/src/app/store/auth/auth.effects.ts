@@ -1,6 +1,6 @@
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
-import {AuthService} from '../../auth/auth.service';
+import {AuthService} from '../../services/auth.service';
 import {exhaustMap, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import jwt_decode, {JwtPayload} from 'jwt-decode';
